@@ -67,7 +67,7 @@ const MyLibraryPage = () => {
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.3em] text-mineral">Loans</p>
           <div className="mt-4 overflow-hidden border-2 border-ink">
-            {!isLoading && !loans.length ? <EmptyState message="Borrowed books will appear here." title="No loans yet" /> : null}
+            {!isLoading && !loans.length ? <EmptyState message="No borrowed titles are currently attached to this account." title="No loans yet" /> : null}
             {loans.map((loan) => (
               <div className="border-b-2 border-ink bg-paper p-4 transition hover:bg-parchment" key={loan._id}>
                 <div className="flex flex-wrap items-start justify-between gap-3">
@@ -93,7 +93,7 @@ const MyLibraryPage = () => {
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.3em] text-cinnabar">Reservations</p>
           <div className="mt-4 overflow-hidden border-2 border-ink">
-            {!isLoading && !reservations.length ? <EmptyState message="Reserve unavailable books from the catalog." title="No reservations yet" /> : null}
+            {!isLoading && !reservations.length ? <EmptyState message="There are no active holds on this account." title="No reservations yet" /> : null}
             {reservations.map((reservation) => (
               <div className="border-b-2 border-ink bg-paper p-4 transition hover:bg-parchment" key={reservation._id}>
                 <div className="flex flex-wrap items-start justify-between gap-3">

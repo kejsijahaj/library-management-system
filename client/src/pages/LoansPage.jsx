@@ -173,7 +173,7 @@ const LoansPage = () => {
       <div className="mt-6 overflow-hidden border-2 border-ink">
         {isLoading ? <p className="bg-parchment p-6 font-bold">Loading loans...</p> : null}
         {error ? <EmptyState message={error} title="Loans could not load" /> : null}
-        {!isLoading && !loans.length ? <EmptyState message="Create a loan to begin circulation." title="No loans found" /> : null}
+        {!isLoading && !loans.length ? <EmptyState message="No titles are currently checked out in this view." title="No loans found" /> : null}
         {loans.map((loan) => (
           <div className="grid gap-4 border-b-2 border-ink bg-paper p-4 transition hover:bg-parchment md:grid-cols-[1.2fr_1fr_1fr_1fr_auto]" key={loan._id}>
             <div>

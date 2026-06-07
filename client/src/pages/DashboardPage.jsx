@@ -36,11 +36,11 @@ const DashboardPage = () => {
             {user?.role === "member" ? "Your shelf, at a glance." : "The desk is live."}
           </h2>
           <p className="mt-6 max-w-lg text-paper/75">
-            Live metrics from MongoDB Atlas, including overdue activity, reservations, and fine totals.
+            Today’s circulation, holds, and account balances across the library.
           </p>
           <div className="absolute -bottom-8 right-8 hidden w-48 border-2 border-ink bg-brass p-5 text-ink shadow-hard md:block">
             <p className="font-display text-4xl font-bold">{isLoading ? "..." : formatValue("fineTotal", metrics.fineTotal)}</p>
-            <p className="text-sm font-bold uppercase tracking-[0.18em]">fine signal</p>
+            <p className="text-sm font-bold uppercase tracking-[0.18em]">outstanding fines</p>
           </div>
         </div>
 

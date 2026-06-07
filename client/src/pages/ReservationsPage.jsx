@@ -163,7 +163,7 @@ const ReservationsPage = () => {
           <p className="text-sm font-bold uppercase tracking-[0.3em] text-cinnabar">Reservations</p>
           <h2 className="mt-3 font-display text-5xl font-bold">Hold queue</h2>
           <p className="mt-4 text-lg text-ink/75">
-            {isStaff ? "Manage pending, ready, fulfilled, and cancelled reservations." : "Place holds for unavailable books and track your queue."}
+            {isStaff ? "Pending holds, ready pickups, and completed reservations." : "Your holds and pickup status."}
           </p>
           <div className="mt-6 flex flex-col gap-3 md:flex-row">
             <select className="min-h-12 border-2 border-ink bg-parchment px-4 font-bold" onChange={(event) => setStatus(event.target.value)} value={status}>
@@ -184,7 +184,7 @@ const ReservationsPage = () => {
       <div className="mt-8 overflow-hidden border-2 border-ink">
         {isLoading ? <p className="bg-parchment p-6 font-bold">Loading reservations...</p> : null}
         {error ? <EmptyState message={error} title="Reservations could not load" /> : null}
-        {!isLoading && !reservations.length ? <EmptyState message="Create a hold from an unavailable book." title="No reservations found" /> : null}
+        {!isLoading && !reservations.length ? <EmptyState message="The hold queue is currently clear." title="No reservations found" /> : null}
         {reservations.map((reservation) => (
           <div className="grid gap-4 border-b-2 border-ink bg-paper p-4 transition hover:bg-parchment md:grid-cols-[1.2fr_1fr_1fr_auto]" key={reservation._id}>
             <div>

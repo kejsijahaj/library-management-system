@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getApiError } from "../api/client.js";
 import { useAuth } from "../context/AuthContext.jsx";
 
-const demoAccounts = [
+const quickAccessAccounts = [
   { label: "Admin", email: "admin@library.test" },
   { label: "Librarian", email: "librarian@library.test" },
   { label: "Member", email: "member@library.test" }
@@ -26,7 +26,7 @@ const LoginPage = () => {
     setForm((current) => ({ ...current, [name]: value }));
   }, []);
 
-  const useDemoAccount = useCallback((email) => {
+  const useQuickAccessAccount = useCallback((email) => {
     setError("");
     setForm({ email, password: "Password123!" });
   }, []);
@@ -62,11 +62,11 @@ const LoginPage = () => {
             <h1 className="mt-5 font-display text-6xl font-bold leading-none md:text-8xl">A sharper desk for busy shelves.</h1>
           </div>
           <div className="flex flex-wrap gap-2">
-            {demoAccounts.map((account) => (
+            {quickAccessAccounts.map((account) => (
               <button
                 className="border-2 border-paper/50 px-3 py-2 text-xs font-bold uppercase tracking-[0.18em] transition hover:-translate-y-1 hover:border-chartreuse hover:text-chartreuse"
                 key={account.email}
-                onClick={() => useDemoAccount(account.email)}
+                onClick={() => useQuickAccessAccount(account.email)}
                 type="button"
               >
                 {account.label}

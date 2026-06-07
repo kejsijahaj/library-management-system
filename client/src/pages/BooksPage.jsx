@@ -159,14 +159,14 @@ const BooksPage = () => {
         <div className="min-h-48 -rotate-2 border-2 border-ink bg-chartreuse p-6 shadow-hard transition duration-300 hover:rotate-0">
           <p className="text-sm font-bold uppercase tracking-[0.24em]">Featured shelf</p>
           <p className="mt-4 font-display text-3xl font-bold">{featuredBook?.title || "No books loaded"}</p>
-          <p className="mt-2 text-sm text-ink/70">{featuredBook?.author || "Seed the database to fill this shelf."}</p>
+          <p className="mt-2 text-sm text-ink/70">{featuredBook?.author || "The featured shelf is empty."}</p>
         </div>
       </div>
 
       <div className="mt-8 overflow-hidden border-2 border-ink">
         {isLoading ? <p className="bg-parchment p-6 font-bold">Loading catalog...</p> : null}
         {error ? <EmptyState message={error} title="Catalog could not load" /> : null}
-        {!isLoading && !books.length ? <EmptyState message="Try changing the filters or add a new book." title="No books found" /> : null}
+        {!isLoading && !books.length ? <EmptyState message="No catalog titles match the current shelf view." title="No books found" /> : null}
         {books.map((book, index) => (
           <div className="grid gap-4 border-b-2 border-ink bg-paper p-4 transition hover:bg-parchment md:grid-cols-[3rem_1.4fr_1fr_1fr_auto]" key={book._id}>
             <div className="flex h-full min-h-16 items-center justify-center bg-ink font-display text-xl font-bold text-paper">{String(index + 1).padStart(2, "0")}</div>

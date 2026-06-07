@@ -118,7 +118,7 @@ const UsersPage = () => {
         <div className="border-y-2 border-ink py-8">
           <p className="text-sm font-bold uppercase tracking-[0.3em] text-mineral">Admin desk</p>
           <h2 className="mt-3 font-display text-5xl font-bold">User management</h2>
-          <p className="mt-4 text-lg text-ink/75">Create staff accounts, manage members, and deactivate stale users.</p>
+          <p className="mt-4 text-lg text-ink/75">Staff, member records, and account standing in one place.</p>
         </div>
         <div className="grid gap-3 sm:grid-cols-3">
           {["admin", "librarian", "member"].map((item) => (
@@ -155,7 +155,7 @@ const UsersPage = () => {
       <div className="mt-6 overflow-hidden border-2 border-ink">
         {isLoading ? <p className="bg-parchment p-6 font-bold">Loading users...</p> : null}
         {error ? <EmptyState message={error} title="Users could not load" /> : null}
-        {!isLoading && !users.length ? <EmptyState message="Try another role or create a new user." title="No users found" /> : null}
+        {!isLoading && !users.length ? <EmptyState message="No accounts match the current view." title="No users found" /> : null}
         {users.map((user) => (
           <div className="grid gap-4 border-b-2 border-ink bg-paper p-4 transition hover:bg-parchment md:grid-cols-[1.2fr_1fr_1fr_auto]" key={user._id}>
             <div>

@@ -65,7 +65,7 @@ const AppShell = () => {
             <h1 className="font-display text-3xl font-bold md:text-5xl">Circulation desk</h1>
           </div>
           <div className="border-2 border-ink bg-parchment px-4 py-2 text-right shadow-hard">
-            <p className="text-sm font-bold">{user?.name || "Demo User"}</p>
+            <p className="text-sm font-bold">{user?.name || "Library User"}</p>
             <p className="text-xs uppercase tracking-[0.18em] text-mineral">{user?.role || "member"}</p>
           </div>
         </header>
