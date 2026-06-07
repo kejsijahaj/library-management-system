@@ -1,17 +1,23 @@
-import { BookOpen, CalendarClock, LayoutDashboard, Library, LogOut, Users } from "lucide-react";
+import { BookOpen, CalendarClock, LayoutDashboard, Library, LogOut, UserRound, Users } from "lucide-react";
+import { useMemo } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 
 const navItems = [
   { label: "Dashboard", href: "/", icon: LayoutDashboard },
   { label: "Books", href: "/books", icon: BookOpen },
-  { label: "Loans", href: "/loans", icon: Library },
+  { label: "My Library", href: "/my-library", icon: UserRound, roles: ["member"] },
+  { label: "Loans", href: "/loans", icon: Library, roles: ["admin", "librarian"] },
   { label: "Reservations", href: "/reservations", icon: CalendarClock },
-  { label: "Users", href: "/users", icon: Users }
+  { label: "Users", href: "/users", icon: Users, roles: ["admin"] }
 ];
 
 const AppShell = () => {
   const { logout, user } = useAuth();
+  const visibleNavItems = useMemo(
+    () => navItems.filter((item) => !item.roles || item.roles.includes(user?.role)),
+    [user?.role]
+  );
 
   return (
     <div className="min-h-screen bg-paper text-ink">
@@ -20,7 +26,7 @@ const AppShell = () => {
           <div className="hidden h-12 w-12 rotate-[-8deg] items-center justify-center bg-chartreuse font-display text-xl font-bold text-ink shadow-hard md:flex">
             L
           </div>
-          {navItems.map((item) => {
+          {visibleNavItems.map((item) => {
             const Icon = item.icon;
 
             return (
@@ -33,6 +39,7 @@ const AppShell = () => {
                   ].join(" ")
                 }
                 key={item.href}
+                title={item.label}
                 to={item.href}
               >
                 <Icon size={21} />
@@ -43,6 +50,7 @@ const AppShell = () => {
             aria-label="Log out"
             className="flex h-12 w-12 items-center justify-center text-paper transition duration-200 hover:-translate-y-1 hover:text-chartreuse md:mt-auto md:hover:translate-x-1 md:hover:translate-y-0"
             onClick={logout}
+            title="Log out"
             type="button"
           >
             <LogOut size={21} />
@@ -53,7 +61,7 @@ const AppShell = () => {
       <main className="min-h-screen pb-24 md:ml-24 md:pb-0">
         <header className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-6 md:px-10">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-mineral">Library System</p>
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-mineral">The Kejsi Library System</p>
             <h1 className="font-display text-3xl font-bold md:text-5xl">Circulation desk</h1>
           </div>
           <div className="border-2 border-ink bg-parchment px-4 py-2 text-right shadow-hard">

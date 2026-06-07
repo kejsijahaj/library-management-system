@@ -29,6 +29,20 @@ export const listUsers = asyncHandler(async (req, res) => {
   res.json({ users });
 });
 
+export const listMembers = asyncHandler(async (req, res) => {
+  const { query } = req.query;
+  const filter = { role: "member", status: "active" };
+
+  if (query) {
+    const expression = new RegExp(query, "i");
+    filter.$or = [{ name: expression }, { email: expression }, { membershipCode: expression }];
+  }
+
+  const members = await User.find(filter).sort({ name: 1 });
+
+  res.json({ members });
+});
+
 export const getUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 

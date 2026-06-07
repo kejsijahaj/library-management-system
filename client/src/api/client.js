@@ -13,3 +13,7 @@ api.interceptors.request.use((config) => {
 
   return config;
 });
+
+export const getApiError = (error, fallback = "Something went wrong. Try again.") => {
+  return error?.response?.data?.message || error?.message || fallback;
+};
